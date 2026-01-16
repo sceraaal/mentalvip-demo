@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Profilo | MentalVIP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { background-color: #0d1a1a; color: white; }</style>
+</head>
+<body class="p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-black mb-8">IL MIO PROFILO</h1>
+        
+        <div class="flex items-center gap-6 mb-8">
+            <div class="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#a2ff00] cursor-pointer" onclick="document.getElementById('upload').click()">
+                <img id="avatar" src="https://ui-avatars.com/api/?name=U&background=000&color=fff" class="w-full h-full object-cover">
+            </div>
+            <input type="file" id="upload" class="hidden" accept="image/*" onchange="uploadPhoto(event)">
+            
+            <div>
+                <h2 class="text-xl font-bold">UTENTE DEMO</h2>
+                <span class="text-xs bg-[#a2ff00] text-black px-2 py-1 rounded font-bold">ELITE</span>
+            </div>
+        </div>
+
+        <button onclick="logout()" class="text-red-500 border border-red-500 px-4 py-2 rounded hover:bg-red-500 hover:text-white transition">ESCI</button>
+        <a href="index.html" class="block mt-8 text-xs text-gray-500 underline">Torna alla Home</a>
+    </div>
+
+    <script>
+        // Carica Foto
+        const saved = localStorage.getItem('mental_user_photo');
+        if(saved) document.getElementById('avatar').src = saved;
+
+        function uploadPhoto(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64 = evt.target.result;
+                localStorage.setItem('mental_user_photo', base64);
+                document.getElementById('avatar').src = base64;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

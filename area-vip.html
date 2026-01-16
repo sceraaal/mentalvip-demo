@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Area VIP | MentalVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background-color: #050505; color: #e2e8f0; font-family: 'Unbounded'; }
+        .organic-glass { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .locked-content { filter: blur(12px); pointer-events: none; opacity: 0.4; }
+    </style>
+</head>
+<body class="bg-black min-h-screen">
+
+    <header class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/90 backdrop-blur-lg">
+        <div class="max-w-[1600px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-black text-white">MENTAL<span class="text-[#a2ff00]">VIP</span></a>
+            <div class="flex items-center gap-4">
+                <a href="login.html" id="login-link" class="text-xs font-bold text-white uppercase hover:text-[#a2ff00]">Accedi</a>
+                <button onclick="logout()" id="logout-btn" class="hidden text-xs font-bold text-red-500 uppercase">Esci</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative pt-32 pb-20 px-6 max-w-[1600px] mx-auto min-h-screen">
+        
+        <!-- LOCK OVERLAY -->
+        <div id="lock-overlay" class="absolute inset-0 z-50 flex items-center justify-center top-20">
+            <div class="bg-black/90 border border-[#a2ff00]/30 p-10 rounded-3xl text-center shadow-[0_0_100px_rgba(162,255,0,0.1)]">
+                <i data-lucide="lock" class="w-12 h-12 text-[#a2ff00] mx-auto mb-4"></i>
+                <h1 class="text-2xl font-black text-white mb-2">Accesso Riservato</h1>
+                <a href="login.html" class="block w-full py-4 bg-[#a2ff00] text-black font-black rounded-xl mt-6 hover:bg-white transition">ACCEDI (DEMO)</a>
+            </div>
+        </div>
+
+        <!-- CONTENUTO -->
+        <div id="vip-content" class="locked-content">
+            <h2 class="text-xl font-black text-white mb-6 flex items-center gap-2"><i data-lucide="activity" class="text-[#a2ff00]"></i> Operazioni Live</h2>
+            <div id="live-signals-container" class="space-y-4"></div>
+        </div>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        const MOCK_DATA = [
+            { sport: 'tennis', competition: 'ATP FINALS', match_name: 'SINNER vs DJOKOVIC', strategy: 'SINNER WIN', odds: '1.85', label: 'ALPHA SIGNAL', link: '#' },
+            { sport: 'soccer', competition: 'SERIE A', match_name: 'INTER vs JUVENTUS', strategy: 'UNDER 2.5', odds: '1.70', label: 'STATS PICK', link: '#' }
+        ];
+
+        function loadSignals() {
+            const container = document.getElementById('live-signals-container');
+            const stored = localStorage.getItem('mental_signals');
+            const signals = stored ? JSON.parse(stored) : MOCK_DATA;
+
+            if(signals.length === 0) {
+                container.innerHTML = '<div class="text-gray-500 text-xs">NESSUN SEGNALE.</div>';
+                return;
+            }
+
+            container.innerHTML = signals.map(s => `
+                <div class="organic-glass rounded-2xl overflow-hidden border ${s.sport === 'tennis' ? 'border-[#a2ff00]/30' : 'border-[#00F0FF]/30'}">
+                    <div class="px-6 py-3 flex justify-between border-b border-white/5 text-[10px] font-mono">
+                        <span class="${s.sport === 'tennis' ? 'text-[#a2ff00]' : 'text-[#00F0FF]'} uppercase">${s.sport} • ${s.label}</span>
+                        <span class="text-white animate-pulse">LIVE</span>
+                    </div>
+                    <div class="p-6 flex justify-between items-center">
+                        <div>
+                            <div class="text-[10px] text-gray-500 uppercase font-mono mb-1">${s.competition}</div>
+                            <div class="text-lg font-bold text-white uppercase">${s.match_name}</div>
+                            <div class="text-sm font-mono text-gray-300 mt-1">STRATEGIA: ${s.strategy}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-black text-white">@${s.odds}</div>
+                            <a href="${s.link}" target="_blank" class="text-[10px] text-[#a2ff00] underline uppercase">Apri Match</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkAccess() {
+            const user = JSON.parse(localStorage.getItem('mental_user'));
+            if (user && user.role === 'elite') {
+                document.getElementById('lock-overlay').style.display = 'none';
+                document.getElementById('vip-content').classList.remove('locked-content');
+                document.getElementById('login-link').classList.add('hidden');
+                document.getElementById('logout-btn').classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('mental_user');
+            window.location.reload();
+        }
+
+        loadSignals();
+        checkAccess();
+    </script>
+</body>
+</html>

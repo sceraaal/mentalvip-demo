@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Registrazione Demo | MentalVIP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { background-color: #0d1a1a; color: white; }</style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-lg p-8">
+        <h1 class="text-3xl font-black text-[#a2ff00] mb-6">CREA ACCOUNT (DEMO)</h1>
+        
+        <input type="text" placeholder="Nome" class="w-full p-3 mb-4 bg-black/50 border border-white/20 rounded text-white">
+        <input type="text" placeholder="Cognome" class="w-full p-3 mb-4 bg-black/50 border border-white/20 rounded text-white">
+        <input type="text" id="city" placeholder="Città (Es. Roma)" class="w-full p-3 mb-4 bg-black/50 border border-white/20 rounded text-white">
+        
+        <button onclick="register()" class="w-full py-4 bg-[#a2ff00] text-black font-bold rounded hover:bg-white transition">REGISTRATI</button>
+        <a href="index.html" class="block text-center mt-6 text-xs text-gray-500 underline">Torna alla Home</a>
+    </div>
+
+    <script>
+        function register() {
+            // Simulazione Successo
+            const user = {
+                id: Math.floor(Math.random() * 1000),
+                nome: "Nuovo",
+                cognome: "Utente",
+                role: "free"
+            };
+            localStorage.setItem('mental_user', JSON.stringify(user));
+            alert("Registrazione Simulata con Successo!");
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>ADMIN_ROOT // STATIC_MODE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background-color: #050505; color: #00FF94; font-family: 'JetBrains Mono', monospace; }
+        .hacker-border { border: 1px solid #00FF94; box-shadow: 0 0 10px rgba(0, 255, 148, 0.2); }
+        input, select { background: #000; border: 1px solid #333; color: white; padding: 10px; width: 100%; outline: none; }
+        input:focus, select:focus { border-color: #00FF94; }
+    </style>
+</head>
+<body class="p-8 max-w-4xl mx-auto">
+
+    <div class="flex justify-between items-center mb-8 border-b border-[#00FF94] pb-4">
+        <h1 class="text-2xl font-bold tracking-widest">ADMIN CONSOLE (LOCAL)</h1>
+        <a href="index.html" class="text-xs hover:text-white">TORNA ALLA HOME</a>
+    </div>
+
+    <!-- LINK DECODER ENGINE -->
+    <div class="hacker-border p-6 mb-8 relative overflow-hidden">
+        <h2 class="text-sm font-bold mb-4 uppercase flex items-center gap-2">
+            <i data-lucide="radar" class="w-4 h-4"></i> Link Decoder Engine
+        </h2>
+        <div class="flex gap-4 mb-4">
+            <input type="text" id="urlInput" placeholder="INCOLLA LINK (Simulazione)">
+            <button onclick="decodeUrl()" class="bg-[#00FF94] text-black font-bold px-6 py-2 hover:bg-white transition whitespace-nowrap">SCAN URL</button>
+        </div>
+        <div id="loader" class="hidden text-xs text-center py-4">> DECRITTAZIONE...</div>
+    </div>
+
+    <!-- FORM -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="hacker-border p-6">
+            <div class="space-y-4">
+                <div><label class="text-[10px] text-gray-500">SPORT</label><select id="sport"><option value="tennis">TENNIS</option><option value="soccer">CALCIO</option></select></div>
+                <div><label class="text-[10px] text-gray-500">COMPETIZIONE</label><input type="text" id="competition" placeholder="es. ATP MIAMI"></div>
+                <div><label class="text-[10px] text-gray-500">MATCH</label><input type="text" id="match" placeholder="es. SINNER vs ALCARAZ"></div>
+            </div>
+        </div>
+        <div class="hacker-border p-6">
+            <div class="space-y-4">
+                <div><label class="text-[10px] text-gray-500">STRATEGIA</label><input type="text" id="strategy" placeholder="es. OVER 22.5"></div>
+                <div class="flex gap-4">
+                    <div class="w-1/2"><label class="text-[10px] text-gray-500">QUOTA</label><input type="text" id="odds" placeholder="1.80"></div>
+                    <div class="w-1/2"><label class="text-[10px] text-gray-500">LABEL</label><select id="label"><option value="ALPHA SIGNAL">ALPHA (Verde)</option><option value="HIGH VOLATILITY">VOLATILITY (Blu)</option></select></div>
+                </div>
+                <div><label class="text-[10px] text-gray-500">LINK</label><input type="text" id="finalLink" readonly class="text-gray-500"></div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="deploySignal()" class="w-full bg-[#00FF94] text-black font-bold py-4 mb-12 hover:bg-white transition">>>> DEPLOY TO LOCAL STORAGE</button>
+
+    <div id="signalsTable" class="space-y-2 text-xs font-mono"></div>
+    <button onclick="localStorage.removeItem('mental_signals'); renderTable();" class="mt-4 text-red-500 text-xs underline">RESET DB</button>
+
+    <script>
+        lucide.createIcons();
+
+        function decodeUrl() {
+            const url = document.getElementById('urlInput').value.toLowerCase();
+            document.getElementById('loader').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                let sport = 'tennis';
+                if(url.includes('calcio') || url.includes('soccer')) sport = 'soccer';
+                document.getElementById('sport').value = sport;
+                document.getElementById('match').value = "MATCH RILEVATO DA URL";
+                document.getElementById('finalLink').value = document.getElementById('urlInput').value;
+            }, 500);
+        }
+
+        function deploySignal() {
+            const signal = {
+                id: Date.now(),
+                sport: document.getElementById('sport').value,
+                competition: document.getElementById('competition').value,
+                match_name: document.getElementById('match').value,
+                strategy: document.getElementById('strategy').value,
+                odds: document.getElementById('odds').value,
+                label: document.getElementById('label').value,
+                link: document.getElementById('finalLink').value
+            };
+
+            const signals = JSON.parse(localStorage.getItem('mental_signals') || '[]');
+            signals.unshift(signal);
+            localStorage.setItem('mental_signals', JSON.stringify(signals));
+            
+            alert('SEGNALE SALVATO IN LOCALE!');
+            renderTable();
+        }
+
+        function renderTable() {
+            const container = document.getElementById('signalsTable');
+            const signals = JSON.parse(localStorage.getItem('mental_signals') || '[]');
+            
+            if (signals.length === 0) {
+                container.innerHTML = '<div class="text-gray-600">NESSUN SEGNALE.</div>';
+                return;
+            }
+
+            container.innerHTML = signals.map((s, i) => `
+                <div class="flex justify-between bg-[#111] p-3 border-l-2 ${s.sport === 'tennis' ? 'border-[#00FF94]' : 'border-[#00FFFF]'}">
+                    <div>${s.sport.toUpperCase()} | ${s.match_name} | ${s.strategy}</div>
+                    <button onclick="removeSignal(${i})" class="text-red-500">X</button>
+                </div>
+            `).join('');
+        }
+
+        function removeSignal(index) {
+            const signals = JSON.parse(localStorage.getItem('mental_signals') || '[]');
+            signals.splice(index, 1);
+            localStorage.setItem('mental_signals', JSON.stringify(signals));
+            renderTable();
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Tennis Market | MentalVIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepSky: '#142626',
+                        tennisGreen: '#39FF14',
+                        neonGreen: '#a2ff00',
+                        electricBlue: '#00F0FF',
+                        darkPanel: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        sans: ['Unbounded', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #e2e8f0; }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .organic-glass {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(57, 255, 20, 0.1);
+        }
+        .filter { transition: all 0.3s; }
+    </style>
+</head>
+<body class="bg-deepSky bg-grid min-h-screen flex flex-col">
+
+    <!-- HEADER UNIFICATO -->
+    <header class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/90 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto h-16 px-4 grid grid-cols-3 items-center md:flex md:justify-between">
+            <div class="flex items-center justify-start md:w-auto">
+                <button onclick="toggleMenu()" class="md:hidden text-white hover:text-neonGreen p-1 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <a href="index.html" class="hidden md:block text-xl font-black tracking-tighter text-white">MENTAL<span class="text-neonGreen">VIP</span></a>
+            </div>
+            <div class="flex justify-center md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <a href="index.html" class="md:hidden text-lg font-black tracking-tighter text-white">MENTAL<span class="text-neonGreen">VIP</span></a>
+                <div class="hidden md:flex gap-8 font-mono text-xs tracking-widest text-gray-400">
+                    <a href="tennis.html" class="text-tennisGreen border-b border-tennisGreen pb-1">TENNIS</a>
+                    <a href="calcio.html" class="hover:text-electricBlue transition">CALCIO</a>
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-3 md:w-auto">
+                <div id="auth-buttons" class="flex items-center gap-2">
+                    <a href="login.html" class="px-3 py-1.5 text-xs font-bold text-white border border-white/20 rounded hover:bg-white hover:text-black transition uppercase">ACCEDI</a>
+                </div>
+                <div id="user-profile" class="hidden items-center gap-3" style="display: none;">
+                    <div class="text-right hidden lg:block">
+                        <div id="user-name-display" class="text-[10px] font-bold text-neonGreen uppercase">USER</div>
+                    </div>
+                    <a href="profile.html">
+                        <div class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-gray-800 border border-white/20 overflow-hidden">
+                            <img id="user-avatar-display" src="https://ui-avatars.com/api/?name=U" class="w-full h-full object-cover">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU MOBILE -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden flex-col items-center justify-center space-y-8 transition-opacity duration-300">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white hover:text-red-500 transition"><i data-lucide="x" class="w-8 h-8"></i></button>
+        <a href="index.html" class="text-2xl font-black text-white hover:text-neonGreen transition">HOME</a>
+        <a href="tennis.html" class="text-2xl font-black text-tennisGreen transition">TENNIS</a>
+        <a href="calcio.html" class="text-2xl font-black text-white hover:text-electricBlue transition">CALCIO</a>
+        <a href="area-vip.html" class="text-2xl font-black text-neonGreen border border-neonGreen px-6 py-2 rounded-lg hover:bg-neonGreen hover:text-black transition">AREA VIP</a>
+        <a href="profile.html" class="text-sm font-mono text-gray-400 uppercase tracking-widest mt-8">Il mio Profilo</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) { menu.classList.remove('hidden'); menu.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+            else { menu.classList.add('hidden'); menu.classList.remove('flex'); document.body.style.overflow = ''; }
+        }
+    </script>
+
+    <main class="pt-32 pb-20 px-4 max-w-5xl mx-auto flex-grow">
+        
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-tennisGreen/30 bg-tennisGreen/10 text-tennisGreen text-[10px] font-mono mb-4 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-tennisGreen"></span>
+                SYSTEM ONLINE: LIVE SIGNALS
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-4">TENNIS <span class="text-tennisGreen">INTELLIGENCE</span></h1>
+            <p class="text-gray-400 text-sm max-w-lg mx-auto">
+                Accedi ai segnali premium generati dall'algoritmo.
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <!-- Card 1: FREE -->
+            <div class="organic-glass rounded-xl p-6 relative overflow-hidden border-l-4 border-l-gray-500">
+                <div class="absolute top-0 right-0 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg font-mono">FREE PICK</div>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-4 w-full md:w-1/3 text-left">
+                        <div class="text-center">
+                            <div class="text-[10px] text-gray-500 font-mono mb-1 uppercase tracking-tighter">Inizio</div>
+                            <i data-lucide="trophy" class="w-5 h-5 mx-auto text-gray-400"></i>
+                        </div>
+                        <div class="h-10 w-px bg-white/10 hidden md:block"></div>
+                        <div>
+                            <div class="text-xs text-gray-400 font-mono">ATP MONTECARLO</div>
+                            <div class="font-bold text-white text-lg">Musetti <span class="text-gray-600">vs</span> Fritz</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center border-l border-white/10 pl-6 border-r pr-6">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Strategia</div>
+                        <div class="text-xl font-mono font-bold text-white uppercase">OVER 22.5 GAMES</div>
+                    </div>
+                    <div class="w-full md:w-auto text-center md:text-right">
+                        <div class="text-[10px] text-gray-500 mb-1">QUOTA</div>
+                        <div class="text-2xl font-bold text-tennisGreen font-mono">1.85</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: REGISTRAZIONE -->
+            <div class="organic-glass rounded-xl p-0 relative overflow-hidden border-l-4 border-l-tennisGreen group">
+                <div class="p-6 filter blur-md opacity-40 select-none pointer-events-none content-layer">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div class="flex items-center gap-4 w-full md:w-1/3 text-left">
+                            <div class="text-center">
+                                <div class="text-[10px] text-gray-500 font-mono mb-1 uppercase tracking-tighter">Inizio</div>
+                                <i data-lucide="zap" class="w-5 h-5 mx-auto text-tennisGreen"></i>
+                            </div>
+                            <div class="h-10 w-px bg-white/10 hidden md:block"></div>
+                            <div>
+                                <div class="text-xs text-tennisGreen font-mono uppercase">PREMIUM</div>
+                                <div class="font-bold text-white text-lg uppercase">Sinner vs Djokovic</div>
+                            </div>
+                        </div>
+                        <div class="flex-1 text-center border-l border-white/10 pl-6 border-r pr-6">
+                            <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Strategia</div>
+                            <div class="text-xl font-mono font-bold text-white uppercase">SINNER WIN</div>
+                        </div>
+                        <div class="w-full md:w-auto text-center md:text-right">
+                            <div class="text-[10px] text-gray-500 mb-1 uppercase">QUOTA</div>
+                            <div class="text-2xl font-bold text-tennisGreen font-mono">1.95</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Overlay (Orizzontale) -->
+                <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-md transition-all duration-500 group-hover:bg-black/60 lock-layer">
+                    <div class="w-full max-w-4xl px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-black border border-white/30 rounded-full flex items-center justify-center">
+                                <i data-lucide="user-plus" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="text-white font-black tracking-widest text-sm uppercase">REGISTRAZIONE RICHIESTA</h3>
+                                <p class="text-gray-400 text-[10px] font-mono uppercase tracking-tighter">Crea un account gratuito per sbloccare questo segnale.</p>
+                            </div>
+                        </div>
+                        <a href="register.html" class="flex-shrink-0 px-8 py-3 border border-white text-white font-black text-xs rounded hover:bg-white hover:text-black transition uppercase tracking-widest">REGISTRATI GRATIS</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: ABBONAMENTO -->
+            <div class="organic-glass rounded-xl p-0 relative overflow-hidden border-l-4 border-l-tennisGreen group">
+                <div class="p-6 filter blur-md opacity-40 select-none pointer-events-none content-layer">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div class="flex items-center gap-4 w-full md:w-1/3 text-left">
+                            <div class="text-center">
+                                <div class="text-[10px] text-gray-500 font-mono mb-1 uppercase tracking-tighter">Inizio</div>
+                                <i data-lucide="crown" class="w-5 h-5 mx-auto text-tennisGreen"></i>
+                            </div>
+                            <div class="h-10 w-px bg-white/10 hidden md:block"></div>
+                            <div>
+                                <div class="text-xs text-tennisGreen font-mono uppercase">WHALE BET</div>
+                                <div class="font-bold text-white text-lg uppercase">Alcaraz vs Zverev</div>
+                            </div>
+                        </div>
+                        <div class="flex-1 text-center border-l border-white/10 pl-6 border-r pr-6">
+                            <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Strategia</div>
+                            <div class="text-xl font-mono font-bold text-white uppercase">OVER 38.5</div>
+                        </div>
+                        <div class="w-full md:w-auto text-center md:text-right">
+                            <div class="text-[10px] text-gray-500 mb-1 uppercase">QUOTA</div>
+                            <div class="text-2xl font-bold text-tennisGreen font-mono">2.10</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Overlay (Orizzontale) -->
+                <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-md transition-all duration-500 group-hover:bg-black/60 lock-layer">
+                    <div class="w-full max-w-4xl px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-black border border-tennisGreen rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(57,255,20,0.3)]">
+                                <i data-lucide="crown" class="w-4 h-4 text-tennisGreen"></i>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="text-white font-black tracking-widest text-sm uppercase">SOLO ABBONATI VIP</h3>
+                                <p class="text-gray-400 text-[10px] font-mono uppercase tracking-tighter">Contenuto esclusivo riservato ai membri ELITE.</p>
+                            </div>
+                        </div>
+                        <a href="subscriptions.html" class="flex-shrink-0 px-8 py-3 bg-tennisGreen text-black font-black text-xs rounded hover:scale-105 hover:bg-white transition uppercase tracking-widest shadow-[0_0_20px_rgba(57,255,20,0.4)]">ABBONATI ORA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 bg-black py-8 text-center text-xs text-gray-600 font-mono uppercase">
+        <p>&copy; 2026 MENTAL TENNIS ANALYTICS</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // GESTIONE UTENTE E SBLOCCO
+        document.addEventListener('DOMContentLoaded', () => {
+            const userStr = localStorage.getItem('mental_user');
+            const authBtns = document.getElementById('auth-buttons');
+            const userProfile = document.getElementById('user-profile');
+
+            if (userStr) {
+                const user = JSON.parse(userStr);
+                
+                if(authBtns) authBtns.style.display = 'none';
+                if(userProfile) { userProfile.style.display = 'flex'; userProfile.classList.remove('hidden'); }
+                
+                const nameDisplay = document.getElementById('user-name-display');
+                if(nameDisplay) nameDisplay.innerText = user.nome || "VIP";
+
+                const savedPhoto = localStorage.getItem('mental_user_photo');
+                const avatarImg = document.getElementById('user-avatar-display');
+                if (savedPhoto && avatarImg) avatarImg.src = savedPhoto;
+                else if (avatarImg) avatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.nome)}&background=0D1A1A&color=fff`;
+
+                // SBLOCCO LIVELLO 1 (Registrato)
+                document.querySelectorAll('.lock-layer').forEach(layer => {
+                    if (layer.innerHTML.includes('REGISTRAZIONE')) {
+                        layer.style.display = 'none';
+                        const content = layer.previousElementSibling;
+                        if(content) content.classList.remove('filter', 'blur-md', 'opacity-40', 'select-none', 'pointer-events-none');
+                    }
+                });
+
+                // SBLOCCO LIVELLO 2 (Elite)
+                if (user.role === 'elite') {
+                    document.querySelectorAll('.lock-layer').forEach(layer => {
+                        layer.style.display = 'none';
+                        const content = layer.previousElementSibling;
+                        if(content) content.classList.remove('filter', 'blur-md', 'opacity-40', 'select-none', 'pointer-events-none');
+                    });
+                }
+            } else {
+                if(authBtns) authBtns.style.display = 'flex';
+                if(userProfile) userProfile.style.display = 'none';
+            }
+        });
+
+        function logout() {
+            if(confirm("Vuoi uscire?")) {
+                localStorage.removeItem('mental_user');
+                localStorage.removeItem('mental_user_photo');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

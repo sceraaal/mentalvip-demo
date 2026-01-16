@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Protocols | MentalTennis</title>
+    
+    <!-- Fonts: Inter (Leggibilità) e JetBrains Mono (Stile Codice) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configurazione Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neonGreen: '#a2ff00',
+                        darkBg: '#050505',
+                        panel: '#0F0F0F',
+                        borderDim: '#1F1F1F',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Scrollbar personalizzata per integrarsi col tema dark */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a2ff00; 
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-300 font-sans antialiased selection:bg-neonGreen selection:text-black">
+
+    <!-- HEADER FISSO -->
+    <nav class="fixed top-0 w-full z-50 bg-darkBg/90 backdrop-blur-md border-b border-borderDim h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-neonGreen rounded-full animate-pulse"></div>
+                <span class="font-mono font-bold text-sm tracking-widest text-white uppercase">
+                    MentalTennis<span class="text-neonGreen">_Protocols</span>
+                </span>
+            </div>
+            
+            <!-- Link Dashboard -->
+            <a href="index.html" class="group flex items-center gap-2 font-mono text-xs text-gray-500 hover:text-white transition-colors duration-300 uppercase tracking-wider">
+                <span class="hidden sm:inline">Torna alla Dashboard</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-24 pb-20 px-4">
+        
+        <!-- Contenitore Documento -->
+        <div class="max-w-3xl mx-auto bg-panel border border-borderDim rounded-xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.7)] overflow-hidden">
+            
+            <!-- Intestazione Documento -->
+            <div class="p-8 md:p-10 border-b border-borderDim bg-[#0a0a0a]">
+                <p class="font-mono text-xs text-neonGreen mb-2">DOC_ID: GDPR_2025_V2.1</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+                    Informativa sulla Privacy e<br>Trattamento Dati
+                </h1>
+                <p class="mt-4 text-sm text-gray-500 font-mono">
+                    Ultimo aggiornamento: 16 Gennaio 2026<br>
+                    Stato: <span class="text-green-500">VIGENTE</span>
+                </p>
+            </div>
+
+            <!-- Corpo del Testo -->
+            <div class="p-8 md:p-10 space-y-12 text-sm md:text-base leading-relaxed text-gray-300">
+
+                <!-- Sezione 0: Intro -->
+                <p>
+                    La presente informativa descrive le modalità di gestione del sito web <strong>MentalTennis</strong> in riferimento al trattamento dei dati personali degli utenti che lo consultano, ai sensi del Regolamento UE 2016/679 (GDPR). La trasparenza è il core del nostro algoritmo.
+                </p>
+
+                <!-- Sezione 1 -->
+                <section>
+                    <h2 class="font-mono text-neonGreen text-lg mb-4 border-l-2 border-neonGreen pl-3 uppercase tracking-wider">
+                        1. Titolare del Trattamento
+                    </h2>
+                    <p class="mb-4">
+                        Il Titolare del trattamento dei dati è <strong>MentalTennis Analytics Ltd.</strong>, con sede legale e operativa fittizia in Digital Plaza, blocco 404, Tech City.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                        <li>Email per comunicazioni privacy: <span class="text-white font-mono">privacy@mentaltennis.com</span></li>
+                        <li>DPO (Data Protection Officer): Ref. Security Team</li>
+                    </ul>
+                </section>
+
+                <!-- Sezione 2 -->
+                <section>
+                    <h2 class="font-mono text-neonGreen text-lg mb-4 border-l-2 border-neonGreen pl-3 uppercase tracking-wider">
+                        2. Tipologia di Dati Trattati
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <strong class="text-white block mb-1">A. Dati di Navigazione</strong>
+                            <p class="text-gray-400 text-sm">
+                                I sistemi informatici preposti al funzionamento di questo sito acquisiscono, nel corso del loro normale esercizio, alcuni dati personali la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet (es. indirizzi IP, parametri del sistema operativo).
+                            </p>
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">B. Dati forniti volontariamente</strong>
+                            <p class="text-gray-400 text-sm">
+                                L'invio facoltativo e volontario di posta elettronica agli indirizzi indicati su questo sito comporta la successiva acquisizione dell'indirizzo del mittente, necessario per rispondere alle richieste.
+                            </p>
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">C. Cookie Tecnici e Analitici</strong>
+                            <p class="text-gray-400 text-sm">
+                                Utilizziamo cookie tecnici essenziali per il funzionamento della dashboard di trading simulato e cookie analitici anonimizzati per migliorare le performance dell'algoritmo.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sezione 3 -->
+                <section>
+                    <h2 class="font-mono text-neonGreen text-lg mb-4 border-l-2 border-neonGreen pl-3 uppercase tracking-wider">
+                        3. Finalità del Trattamento
+                    </h2>
+                    <p class="mb-4">I dati raccolti sono trattati per le seguenti finalità esclusive:</p>
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-400">
+                        <li><strong>Erogazione del Servizio:</strong> Consentire la navigazione, l'accesso all'area riservata e la consultazione dei grafici in tempo reale.</li>
+                        <li><strong>Sicurezza:</strong> Prevenire o scoprire attività fraudolente o abusi dannosi per il sito web (es. attacchi DDoS).</li>
+                        <li><strong>Miglioramento Algoritmico:</strong> Analisi statistica aggregata dei comportamenti di navigazione per ottimizzare la UX della piattaforma.</li>
+                        <li><strong>Obblighi Legali:</strong> Adempiere agli obblighi previsti da leggi, regolamenti o dalla normativa comunitaria.</li>
+                    </ol>
+                </section>
+
+                <!-- Sezione 4 -->
+                <section>
+                    <h2 class="font-mono text-neonGreen text-lg mb-4 border-l-2 border-neonGreen pl-3 uppercase tracking-wider">
+                        4. Diritti dell'Interessato
+                    </h2>
+                    <p class="mb-4">
+                        Ai sensi degli artt. 15-22 del GDPR, l'utente ha il diritto in qualunque momento di ottenere la conferma dell'esistenza o meno dei medesimi dati e di:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-black/30 p-4 border border-white/5 rounded">
+                            <strong class="text-white font-mono text-xs block mb-2">DIRITTO DI ACCESSO</strong>
+                            <span class="text-xs text-gray-500">Ottenere accesso ai propri dati personali trattati.</span>
+                        </div>
+                        <div class="bg-black/30 p-4 border border-white/5 rounded">
+                            <strong class="text-white font-mono text-xs block mb-2">DIRITTO DI RETTIFICA</strong>
+                            <span class="text-xs text-gray-500">Richiedere la correzione di dati inesatti.</span>
+                        </div>
+                        <div class="bg-black/30 p-4 border border-white/5 rounded">
+                            <strong class="text-white font-mono text-xs block mb-2">DIRITTO ALL'OBLIO</strong>
+                            <span class="text-xs text-gray-500">Richiedere la cancellazione dei dati (ove possibile).</span>
+                        </div>
+                        <div class="bg-black/30 p-4 border border-white/5 rounded">
+                            <strong class="text-white font-mono text-xs block mb-2">PORTABILITÀ</strong>
+                            <span class="text-xs text-gray-500">Ricevere i dati in un formato strutturato.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sezione 5 -->
+                <section>
+                    <h2 class="font-mono text-neonGreen text-lg mb-4 border-l-2 border-neonGreen pl-3 uppercase tracking-wider">
+                        5. Sicurezza dei Dati
+                    </h2>
+                    <p class="mb-4 text-justify">
+                        I dati vengono trattati con strumenti automatizzati per il tempo strettamente necessario a conseguire gli scopi per cui sono stati raccolti. Specifiche misure di sicurezza sono osservate per prevenire la perdita dei dati, usi illeciti o non corretti ed accessi non autorizzati, inclusi protocolli di crittografia <strong>SSL/TLS a 256 bit</strong> per tutte le comunicazioni server-client.
+                    </p>
+                </section>
+
+                <div class="mt-12 pt-8 border-t border-borderDim text-center">
+                    <p class="font-mono text-xs text-gray-600">FINE DOCUMENTO // END OF FILE</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-borderDim bg-black py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="font-mono text-xs text-gray-600">
+                &copy; 2026 MentalTennis Analytics. All rights reserved.<br>
+                Trading is a high-risk activity. Use algorithms responsibly.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

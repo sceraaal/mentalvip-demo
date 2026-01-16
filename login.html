@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Login | MentalVIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1a1a; color: #e2e8f0; }
+        .bg-surreal {
+            background: radial-gradient(circle at 50% 50%, rgba(20, 38, 38, 1) 0%, #000 100%);
+        }
+        .organic-glass {
+            background: rgba(20, 38, 38, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surreal min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md organic-glass p-8 rounded-2xl shadow-2xl border-t-4 border-t-[#a2ff00]">
+        <div class="text-center mb-10">
+            <h1 class="text-2xl font-black text-white mb-2">MENTAL<span class="text-[#a2ff00]">VIP</span></h1>
+            <p class="text-xs font-mono text-gray-500">ACCESSO DEMO // BYPASS ATTIVO</p>
+        </div>
+
+        <form class="space-y-6" onsubmit="handleLogin(event)">
+            <div>
+                <label class="block text-xs font-mono text-gray-400 mb-2">EMAIL</label>
+                <input type="email" id="email" value="demo@mentalvip.com" class="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-[#a2ff00] transition" required>
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono text-gray-400 mb-2">PASSWORD</label>
+                <input type="password" id="password" value="demo123" class="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-[#a2ff00] transition" required>
+            </div>
+
+            <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded hover:bg-[#a2ff00] transition uppercase tracking-widest text-sm">
+                ACCEDI (DEMO)
+            </button>
+        </form>
+
+        <div class="mt-8 text-center text-xs text-gray-600 font-mono">
+            <a href="index.html" class="hover:text-white mr-4">Home</a>
+            <a href="register.html" class="hover:text-white">Registrazione Simulata</a>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            // SIMULAZIONE LOGIN LATO CLIENT
+            const fakeUser = {
+                id: 999,
+                nome: "Mental",
+                cognome: "Boss",
+                email: email,
+                role: "elite" // Forziamo il ruolo ELITE per vedere tutto
+            };
+
+            // Salva nel browser
+            localStorage.setItem('mental_user', JSON.stringify(fakeUser));
+            
+            // Redirect
+            window.location.href = 'area-vip.html';
+        }
+    </script>
+
+</body>
+</html>

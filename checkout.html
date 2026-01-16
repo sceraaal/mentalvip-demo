@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Checkout Sicuro | MentalVIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background-color: #0f1115; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .secure-badge { background: #1a1d24; border: 1px solid #333; }
+        .input-field {
+            background: #1a1d24;
+            border: 1px solid #333;
+            color: white;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            border-color: #00FF94;
+            box-shadow: 0 0 0 2px rgba(0, 255, 148, 0.1);
+            outline: none;
+        }
+        .card-preview {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid #374151;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+
+    <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        
+        <!-- RIEPILOGO ORDINE (Sinistra) -->
+        <div class="order-2 lg:order-1">
+            <div class="flex items-center gap-2 mb-8">
+                <a href="subscriptions.html" class="text-gray-500 hover:text-white transition flex items-center gap-1 text-sm font-mono">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Indietro
+                </a>
+            </div>
+
+            <div class="mb-8">
+                <span class="text-xs font-mono text-gray-500 uppercase tracking-widest">Totale da pagare</span>
+                <div class="text-4xl font-bold text-white mt-2" id="totalAmount">€0.00</div>
+                <div class="text-sm text-gray-400 mt-1">incluso IVA se applicabile</div>
+            </div>
+
+            <div class="space-y-4 border-t border-gray-800 pt-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-white" id="planName">Caricamento...</div>
+                        <div class="text-xs text-gray-500">Fatturazione mensile</div>
+                    </div>
+                    <div class="font-mono text-white" id="planPrice">€0.00</div>
+                </div>
+                <div class="flex justify-between items-center text-sm text-gray-400">
+                    <div>Attivazione Istantanea</div>
+                    <div class="text-[#00FF94]">Gratis</div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-[#1a1d24] p-4 rounded-lg border border-[#333] flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-[#00FF94] mt-0.5"></i>
+                <div class="text-xs text-gray-400">
+                    <strong class="text-white block mb-1">Pagamento Sicuro SSL</strong>
+                    I tuoi dati sono protetti con crittografia a 256-bit. Non salviamo i dati della tua carta sui nostri server.
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM PAGAMENTO (Destra) -->
+        <div class="order-1 lg:order-2 bg-white rounded-2xl p-6 md:p-8 text-gray-900 shadow-2xl">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+                Dettagli Pagamento
+                <div class="flex gap-1 ml-auto">
+                    <div class="h-6 w-10 bg-gray-200 rounded"></div>
+                    <div class="h-6 w-10 bg-gray-200 rounded"></div>
+                </div>
+            </h2>
+
+            <form id="paymentForm" onsubmit="processPayment(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email</label>
+                        <input type="email" id="email" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-0 transition" placeholder="tu@esempio.com" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Titolare Carta</label>
+                        <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-0 transition" placeholder="Mario Rossi" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Numero Carta</label>
+                        <div class="relative">
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-3 focus:border-black focus:ring-0 transition font-mono" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                            <i data-lucide="credit-card" class="w-4 h-4 text-gray-400 absolute left-3 top-3.5"></i>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Scadenza</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-0 transition font-mono" placeholder="MM / AA" maxlength="5" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CVV</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-0 transition font-mono" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="payBtn" class="w-full mt-8 bg-black text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition flex items-center justify-center gap-2">
+                    <span>Paga Ora</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+                
+                <p class="text-center text-xs text-gray-400 mt-4">
+                    Cliccando confermi di accettare i Termini di Servizio.
+                </p>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- OVERLAY LOADING -->
+    <div id="processingOverlay" class="fixed inset-0 bg-black/90 z-50 hidden flex flex-col items-center justify-center text-center">
+        <div class="w-16 h-16 border-4 border-[#00FF94] border-t-transparent rounded-full animate-spin mb-6"></div>
+        <h3 class="text-white font-bold text-xl mb-2">Elaborazione Pagamento...</h3>
+        <p class="text-gray-400 text-sm">Non chiudere questa finestra.</p>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. GESTIONE URL PARAMS (Piano Scelto)
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get('plan');
+        
+        const PLANS = {
+            'starter': { name: 'Piano STARTER', price: '€10.00' },
+            'elite': { name: 'Piano ELITE PRO', price: '€20.00' }
+        };
+
+        const selectedPlan = PLANS[plan] || PLANS['elite']; // Default Elite
+
+        document.getElementById('planName').innerText = selectedPlan.name;
+        document.getElementById('planPrice').innerText = selectedPlan.price;
+        document.getElementById('totalAmount').innerText = selectedPlan.price;
+
+        // 2. PROCESSO PAGAMENTO (Simulato)
+        function processPayment(e) {
+            e.preventDefault();
+            const btn = document.getElementById('payBtn');
+            const overlay = document.getElementById('processingOverlay');
+            
+            // UI Feedback
+            overlay.classList.remove('hidden');
+            
+            // Simulazione Ritardo Bancario (2.5s)
+            setTimeout(() => {
+                // Successo!
+                // Salva lo stato "VIP" nel browser (Simulazione Backend)
+                const userStr = localStorage.getItem('mental_user');
+                let user = userStr ? JSON.parse(userStr) : { email: document.getElementById('email').value };
+                
+                user.role = 'elite'; // Upgrade immediato
+                localStorage.setItem('mental_user', JSON.stringify(user));
+
+                // Reindirizza
+                window.location.href = 'area-vip.html?payment=success';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

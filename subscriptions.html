@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="immagine.jpg">
+    <title>Abbonamenti VIP | MentalVIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { neonGreen: '#a2ff00', electricBlue: '#00F0FF' },
+                    fontFamily: { sans: ['Unbounded', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { background-color: #050505; color: #e2e8f0; }</style>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center p-4">
+
+    <div class="text-center max-w-4xl w-full">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase">Scegli il tuo <span class="text-neonGreen">Livello</span></h1>
+        <p class="text-gray-400 mb-12 font-mono text-xs md:text-sm">Investi nella conoscenza. Domina il mercato.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- PIANO BASE (€10) -->
+            <div class="border border-white/10 p-8 rounded-3xl hover:border-neonGreen transition bg-white/5 uppercase flex flex-col relative group">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black border border-white/20 px-4 py-1 rounded-full text-[10px] font-mono text-gray-400">ENTRY LEVEL</div>
+                
+                <h2 class="text-2xl font-bold text-white mb-2">STARTER</h2>
+                <div class="text-4xl font-black text-neonGreen mb-1">€10<span class="text-sm font-normal text-gray-500">/mese</span></div>
+                <p class="text-[10px] text-gray-500 mb-8 font-mono lowercase">Accesso completo alla piattaforma</p>
+                
+                <ul class="text-left text-xs text-gray-300 space-y-4 mb-8 font-mono flex-grow">
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-neonGreen"></i> Accesso Area VIP (Sito)</li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-neonGreen"></i> Segnali Tennis & Calcio</li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-neonGreen"></i> Storico Giocate</li>
+                </ul>
+                
+                <!-- LINK CORRETTO AL CHECKOUT -->
+                <a href="checkout.html?plan=starter" class="w-full py-4 bg-neonGreen text-black font-black rounded-xl hover:bg-white transition uppercase tracking-widest shadow-[0_0_20px_rgba(162,255,0,0.2)] group-hover:shadow-[0_0_30px_rgba(162,255,0,0.4)] block">
+                    ATTIVA ORA
+                </a>
+            </div>
+
+            <!-- PIANO PRO (€20) -->
+            <div class="border-2 border-electricBlue p-8 rounded-3xl bg-electricBlue/5 relative overflow-hidden uppercase flex flex-col transform md:-translate-y-4 shadow-[0_0_40px_rgba(0,240,255,0.15)]">
+                <div class="absolute top-0 right-0 bg-electricBlue text-black text-[10px] font-bold px-4 py-1.5 rounded-bl-xl tracking-widest">CONSIGLIATO</div>
+                
+                <h2 class="text-2xl font-bold text-white mb-2">ELITE PRO</h2>
+                <div class="text-4xl font-black text-electricBlue mb-1">€20<span class="text-sm font-normal text-gray-500">/mese</span></div>
+                <p class="text-[10px] text-gray-500 mb-8 font-mono lowercase">L'esperienza completa + Community</p>
+                
+                <ul class="text-left text-xs text-gray-300 space-y-4 mb-8 font-mono flex-grow">
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-electricBlue"></i> <strong>Tutto incluso nel piano Starter</strong></li>
+                    <li class="flex items-center gap-3"><i data-lucide="message-circle" class="w-4 h-4 text-electricBlue"></i> Accesso Canale Telegram VIP</li>
+                    <li class="flex items-center gap-3"><i data-lucide="zap" class="w-4 h-4 text-electricBlue"></i> Notifiche Push Istantanee</li>
+                    <li class="flex items-center gap-3"><i data-lucide="shield" class="w-4 h-4 text-electricBlue"></i> Supporto Prioritario 24/7</li>
+                </ul>
+                
+                <!-- LINK CORRETTO AL CHECKOUT -->
+                <a href="checkout.html?plan=elite" class="w-full py-4 bg-electricBlue text-black font-black rounded-xl hover:bg-white transition uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] block">
+                    DIVENTA ELITE
+                </a>
+            </div>
+        </div>
+        
+        <div class="mt-12 border-t border-white/10 pt-8">
+            <p class="text-[10px] text-gray-500 font-mono mb-4">Pagamenti sicuri e crittografati. Disdici quando vuoi.</p>
+            <a href="index.html" class="inline-block text-xs text-gray-400 hover:text-white border-b border-gray-600 hover:border-white transition pb-0.5 uppercase tracking-widest">
+                ← Torna alla Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
